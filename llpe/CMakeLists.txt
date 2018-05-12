@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 2.8)
 
 find_package(LLVM REQUIRED CONFIG)
 
+message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
+message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
+message(STATUS ${LLVM_INCLUDE_DIRS})
+message(STATUS ${LLVM_LIBRARY_DIRS})
+
 add_definitions("-std=c++11")
 
 # RTTI-ness must match the LLVM we're building against.

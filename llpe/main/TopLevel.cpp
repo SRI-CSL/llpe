@@ -6,6 +6,7 @@
 // License. See LICENSE.txt for details.
 //
 //===----------------------------------------------------------------------===//
+#include <unistd.h>
 
 #include "llvm/Analysis/LLPE.h"
 

@@ -50,7 +50,7 @@ static void getPollFds(ShadowValue CS, ShadowValue& V, uint64_t& Size) {
   else
     Size *= sizeof(struct pollfd);
   V = getValArgOperand(CS, 0);
-  
+
 }
 
 // Get a syscall's returned pointer:
@@ -264,12 +264,14 @@ static const IHPLocationMRInfo* getIoctlLocDetails(ShadowValue CS) {
   uint64_t ioctlCode;
   if(!tryGetConstantInt(getValArgOperand(CS, 1), ioctlCode))
     return 0;
-  
+
   switch(ioctlCode) {
+    /*
   case TCGETS:
     return TCGETSMR;
   case FIONBIO:
     return JustErrno;
+    */
   default:
     return 0;
   }
@@ -345,7 +347,7 @@ static IHPFunctionInfo VFSCallFunctions[] = {
   { "uname", false, UnameMR, 0 },
   { "__pthread_mutex_init", false, Arg0AndErrnoMR, 0 },
   { "__pthread_mutex_lock", false, Arg0AndErrnoMR, 0 },
-  { "__pthread_mutex_trylock", false, Arg0AndErrnoMR, 0 },  
+  { "__pthread_mutex_trylock", false, Arg0AndErrnoMR, 0 },
   { "__pthread_mutex_unlock", false, Arg0AndErrnoMR, 0 },
   { "pthread_setcanceltype", false, Arg1AndErrnoMR, 0 },
   { "pthread_setcancelstate", false, Arg1AndErrnoMR, 0 },
@@ -377,5 +379,5 @@ IHPFunctionInfo* LLPEAnalysisPass::getMRInfo(Function* F) {
     return 0;
   else
     return &findit->second;
-  
+
 }
